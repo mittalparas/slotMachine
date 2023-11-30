@@ -23,8 +23,8 @@ const deposit = () => {
 
 const getNumberofLines = () => {
   while (true) {
-    const lines = prompt("Enter the number of lines to bet on: ");
-    const numberOfLines = parseFloat(depositAmount);
+    const lines = prompt("Enter the number of lines to bet on(1-3): ");
+    const numberOfLines = parseFloat(lines);
 
     if (isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines > 3) {
       console.log("Invalid number of lines. Pls try again.");
@@ -34,5 +34,20 @@ const getNumberofLines = () => {
   }
 };
 
-const depositAmount = deposit();
-console.log(depositAmount);
+const getBet = (balance, lines) => {
+  while (true) {
+    const bet = prompt("Enter the bet on each line: ");
+    const numberBet = parseFloat(bet) * lines;
+
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance) {
+      console.log("Invalid bet number. Pls try again.");
+    } else {
+      return numberBet;
+    }
+  }
+};
+
+const balance = deposit();
+const NumberofLines = getNumberofLines();
+const bet = getBet(balance, NumberofLines);
+console.log(bet)
